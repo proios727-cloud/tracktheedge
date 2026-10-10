@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackTheEdge — Honest Math for Casino Players</title>
+<meta name="description" content="Printable blackjack basic strategy charts and honest casino trackers. No fake systems. Just the math, made usable.">
+<meta property="og:title" content="TrackTheEdge — Honest Math for Casino Players">
+<meta property="og:description" content="Learn basic strategy free, then take the chart to the table. No fake systems. Just the math.">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --bg:#0b0e14; --bg2:#11151f; --panel:#161b28; --line:#232b3d;
+  --text:#dbe2f0; --dim:#8b94a8; --accent:#ffb347; --green:#3dd68c; --red:#ff6b6b; --blue:#5aa9ff; --purple:#b48cff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+header{padding:64px 0 40px;text-align:center;border-bottom:1px solid var(--line);background:
+  radial-gradient(1200px 400px at 50% -100px, rgba(255,179,71,.08), transparent)}
+.badge{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(255,179,71,.35);border-radius:99px;padding:6px 14px;margin-bottom:22px}
+h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.02em}
+h1 em{color:var(--accent);font-style:normal}
+.sub{max-width:640px;margin:16px auto 0;color:var(--dim);font-size:17px}
+.cta-row{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 26px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .12s ease, box-shadow .12s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#1a1206;box-shadow:0 6px 24px rgba(255,179,71,.25)}
+.btn-ghost{border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+section{padding:56px 0}
+h2{font-size:26px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+h2 .n{color:var(--accent)}
+.lead{color:var(--dim);margin-bottom:28px;max-width:620px}
+.tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.tab{padding:9px 18px;border-radius:9px;border:1px solid var(--line);background:var(--bg2);color:var(--dim);cursor:pointer;font-weight:600;font-size:14px}
+.tab.active{background:var(--accent);color:#1a1206;border-color:var(--accent)}
+.chart-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;overflow-x:auto}
+table{border-collapse:separate;border-spacing:4px;font-size:13px;min-width:640px;width:100%}
+th{color:var(--dim);font-weight:600;padding:6px}
+th.player{text-align:left;padding-left:10px;min-width:120px}
+td.play{text-align:center;padding:9px 6px;border-radius:7px;font-weight:800;cursor:default;border:1px solid transparent}
+td.play[data-h]{background:rgba(255,107,107,.13);color:var(--red)}
+td.play[data-s]{background:rgba(61,214,140,.13);color:var(--green)}
+td.play[data-d]{background:rgba(90,169,255,.15);color:var(--blue)}
+td.play[data-p]{background:rgba(180,140,255,.15);color:var(--purple)}
+td.play[data-dh]{background:rgba(255,179,71,.13);color:var(--accent)}
+td.play[data-ds]{background:rgba(90,169,255,.10);color:var(--blue)}
+td.play[data-rh]{background:rgba(255,107,107,.07);color:var(--red)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--dim)}
+.legend b{display:inline-block;width:13px;height:13px;border-radius:4px;margin-right:6px;vertical-align:-2px}
+.rules-note{margin-top:14px;font-size:13px;color:var(--dim)}
+/* practice */
+.practice{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px;text-align:center}
+.deal{font-size:52px;letter-spacing:6px;margin:10px 0 4px;min-height:74px}
+.sit{color:var(--dim);font-size:14px}
+.question{font-size:22px;font-weight:800;margin:14px 0 6px}
+.streak{font-size:13px;color:var(--dim)}
+.answers{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.ans{padding:13px 22px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--text);font-weight:700;font-size:16px;cursor:pointer;transition:transform .1s}
+.ans:hover{transform:translateY(-2px);border-color:var(--accent)}
+.verdict{margin-top:18px;font-size:15px;min-height:26px}
+.verdict.good{color:var(--green)}
+.verdict.bad{color:var(--red)}
+.verdict .why{color:var(--dim);font-size:13px;display:block;margin-top:4px}
+/* products */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s}
+.card:hover{border-color:var(--accent)}
+.card .price{color:var(--accent);font-weight:800;font-size:20px}
+.card .name{font-weight:700;font-size:15px;min-height:44px}
+.card .desc{color:var(--dim);font-size:13px;flex:1}
+.card a{color:var(--green);font-weight:700;text-decoration:none;font-size:14px}
+.card a:hover{text-decoration:underline}
+.card.star{border-color:rgba(255,179,71,.4);background:linear-gradient(180deg,rgba(255,179,71,.06),var(--panel))}
+.tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700}
+/* honest section */
+.honest{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:8px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.stat .big{font-size:30px;font-weight:800;color:var(--accent)}
+.stat .lbl{font-size:13px;color:var(--dim);margin-top:4px}
+.manifesto{color:var(--dim);font-size:15px;max-width:680px;margin-top:24px}
+.manifesto b{color:var(--text)}
+footer{border-top:1px solid var(--line);padding:36px 0 60px;color:var(--dim);font-size:13px;text-align:center}
+footer a{color:var(--text)}
+@media(max-width:600px){.deal{font-size:38px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="badge">No fake systems &middot; Just the math</div>
+    <h1>Play with a <em>plan</em>, not a hunch.</h1>
+    <p class="sub">Basic strategy is not a winning system. It's how you lose less — cutting the house edge from ~2&ndash;4% playing by feel down to roughly 0.5%. Learn it free below, then take the chart to the table.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://www.etsy.com/listing/4533338576" target="_blank" rel="noopener">Get the chart — $4.90</a>
+      <a class="btn btn-ghost" href="https://www.etsy.com/shop/TrackTheEdge" target="_blank" rel="noopener">Shop all products</a>
+    </div>
+  </div>
+</header>
+
+<section id="chart">
+  <div class="wrap">
+    <h2><span class="n">01 /</span> The chart, free.</h2>
+    <p class="lead">The same basic strategy our printable chart ships with — 6 decks, dealer stands on soft 17, double after split allowed. Phone PNG included with the purchase so it lives on your lock screen, not in a drawer.</p>
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-tab="hard">Hard hands</div>
+      <div class="tab" data-tab="soft">Soft hands (Ace)</div>
+      <div class="tab" data-tab="pairs">Pairs</div>
+    </div>
+    <div class="chart-card" id="chartCard"></div>
+    <div class="legend">
+      <span><b style="background:#ff6b6b"></b>Hit</span>
+      <span><b style="background:#3dd68c"></b>Stand</span>
+      <span><b style="background:#5aa9ff"></b>Double</span>
+      <span><b style="background:#ffb347"></b>Double if allowed, else Hit</span>
+      <span><b style="background:#b48cff"></b>Split</span>
+      <span><b style="background:#8b94a8"></b>Surrender if allowed, else Hit</span>
+    </div>
+    <p class="rules-note">Assumes: 6 decks &middot; dealer stands on soft 17 &middot; double after split &middot; blackjack pays 3:2. If your table pays 6:5, walk away — no chart fixes that.</p>
+  </div>
+</section>
+
+<section id="practice" style="background:var(--bg2)">
+  <div class="wrap">
+    <h2><span class="n">02 /</span> Practice until it's automatic.</h2>
+    <p class="lead">The chart says <b>know it cold</b> before you sit down. Deal yourself situations, call the play, get graded. Every wrong answer comes with the reason.</p>
+    <div class="practice">
+      <div class="deal" id="deal">&#127183;&#127183;&#127183;</div>
+      <div class="sit" id="sit">Press Deal to start</div>
+      <div class="question" id="question"></div>
+      <div class="streak" id="streak"></div>
+      <div class="answers" id="answers">
+        <button class="ans" data-a="H">Hit</button>
+        <button class="ans" data-a="S">Stand</button>
+        <button class="ans" data-a="D">Double</button>
+        <button class="ans" data-a="P">Split</button>
+        <button class="ans" data-a="R">Surrender</button>
+      </div>
+      <div class="verdict" id="verdict"></div>
+      <div class="cta-row" style="margin-top:20px">
+        <button class="btn btn-primary" id="dealBtn" style="border:none;cursor:pointer;font-family:inherit">Deal</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="wrap">
+    <h2><span class="n">03 /</span> Take it to the table.</h2>
+    <p class="lead">Instant digital downloads from our Etsy shop. Print, save to your phone, and actually know your numbers.</p>
+    <div class="grid">
+      <div class="card star">
+        <span class="tag">Launch price</span>
+        <div class="price">$4.90 <s style="color:var(--dim);font-size:14px">$7</s></div>
+        <div class="name">Blackjack Basic Strategy Chart — Printable PDF + Phone PNG</div>
+        <div class="desc">Full chart: hit, stand, double, split for every hand vs. every dealer upcard. Print it or keep it on your lock screen.</div>
+        <a href="https://www.etsy.com/listing/4533338576" target="_blank" rel="noopener">View on Etsy &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="price">$25.00</div>
+        <div class="name">Casino Betting Bundle — Bankroll Tracker, Session Log, Beginner Guide, Chart</div>
+        <div class="desc">Everything in one pack: track your bankroll, log sessions, learn the games, and the strategy chart.</div>
+        <a href="https://www.etsy.com/listing/4590697808" target="_blank" rel="noopener">View on Etsy &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="price">$9.99</div>
+        <div class="name">Sports Betting Bankroll Spreadsheet — Excel &amp; Google Sheets</div>
+        <div class="desc">Auto-calculating bet tracker with units, ROI by sport and book. The real picture instead of a hunch.</div>
+        <a href="https://www.etsy.com/listing/4590552058" target="_blank" rel="noopener">View on Etsy &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="price">$10.00</div>
+        <div class="name">Casino Session Tracker — Win/Loss Log for Excel &amp; Google Sheets</div>
+        <div class="desc">One clean line per session: buy-in, cash-out, time at the table. Spot your leaks fast.</div>
+        <a href="https://www.etsy.com/listing/4590680094" target="_blank" rel="noopener">View on Etsy &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="price">$9.00</div>
+        <div class="name">Casino 101 PDF Guide — Rules, Etiquette, House Edge, First-Timer Vegas</div>
+        <div class="desc">Walk into any casino knowing the rules, the customs, and which games mathematically deserve your money.</div>
+        <a href="https://www.etsy.com/listing/4590696200" target="_blank" rel="noopener">View on Etsy &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg2)">
+  <div class="wrap">
+    <h2><span class="n">04 /</span> The honest part.</h2>
+    <div class="honest">
+      <div class="stat"><div class="big">~0.5%</div><div class="lbl">House edge with basic strategy (common multi-deck rules). Exact figure changes with table rules and payout.</div></div>
+      <div class="stat"><div class="big">2&ndash;4%</div><div class="lbl">What the house takes from players going by feel.</div></div>
+      <div class="stat"><div class="big">0%</div><div class="lbl">Guaranteed winnings we promise. Blackjack is negative expectation over time — this is about losing less, playing smarter.</div></div>
+    </div>
+    <p class="manifesto">No Martingale garbage. No "secret systems." If anyone sells you a way to <b>beat</b> blackjack, they're selling you the hunch dressed in math. What basic strategy actually does is make every hand play the mathematically correct play — and that's the whole edge you're allowed to have. <b>Built by someone who actually plays.</b></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>TrackTheEdge &middot; <a href="https://www.etsy.com/shop/TrackTheEdge" target="_blank" rel="noopener">etsy.com/shop/TrackTheEdge</a></p>
+    <p style="margin-top:8px">Educational reference only. Set a budget, play responsibly, and follow each casino's policy on strategy cards at the table.</p>
+  </div>
+</footer>
+
+<script>
+// Basic strategy: 6 decks, S17, DAS. P = split, DH/DS = double-if-allowed fallbacks.
+const DEALERS = ["2","3","4","5","6","7","8","9","10","A"];
+const HARD = {
+  "5-8":  "H H H H H H H H H H",
+  "9":    "H DH DH DH DH H H H H H",
+  "10":   "DH DH DH DH DH DH DH DH H H",
+  "11":   "DH DH DH DH DH DH DH DH DH H",
+  "12":   "H H S S S H H H H H",
+  "13":   "S S S S S H H H H H",
+  "14":   "S S S S S H H H H H",
+  "15":   "S S S S S H H H RH H",
+  "16":   "S S S S S H H RH RH H",
+  "17+":  "S S S S S S S S S S"
+};
+const SOFT = {
+  "A,2":  "H H H DH DH H H H H H",
+  "A,3":  "H H H DH DH H H H H H",
+  "A,4":  "H H DH DH DH H H H H H",
+  "A,5":  "H H DH DH DH H H H H H",
+  "A,6":  "H DH DH DH DH H H H H H",
+  "A,7":  "S DS DS DS DS S S H H H",
+  "A,8":  "S S S S S S S S S S"
+};
+const PAIRS = {
+  "2,2":  "P P P P P P H H H H",
+  "3,3":  "P P P P P P H H H H",
+  "4,4":  "H H H P P H H H H H",
+  "5,5":  "DH DH DH DH DH DH DH DH H H",
+  "6,6":  "P P P P P H H H H H",
+  "7,7":  "P P P P P P H H H H",
+  "8,8":  "P P P P P P P P P P",
+  "9,9":  "P P P P P S P P S S",
+  "10,10":"S S S S S S S S S S",
+  "A,A":  "P P P P P P P P P P"
+};
+const WHY = {
+  "16 vs 10":"16 vs. 10 is the worst hand in basic strategy — you lose either way, but hitting loses less. If your table offers late surrender, that's even better.",
+  "12 vs 2":"More small cards come out of the shoe than big ones, so standing on 12 vs. 2 barely beats hitting — vs. 4,5,6 it's a clear stand.",
+  "11 vs A":"With dealer standing on soft 17, hitting 11 vs. Ace loses less than doubling.",
+  "A,7 vs 9":"Soft 18 looks safe, but against a 9 the dealer makes 19 more often than you'd like. Hit.",
+  "10,10":"Twenty is already a winning hand. Splitting tens is how people donate.",
+  "A,A":"Two chances at 21 beats one soft 12. Always split aces.",
+  "8,8":"16 is the worst total to be stuck on. Two hands starting from 8 are both playable.",
+  "5,5":"Never split 5s — 10 is a doubling hand.",
+  "9,9 vs 7":"Your 18 wins against a likely dealer 17. Stand, don't complicate it."
+};
+const CODE = {
+  H:["Hit","data-h"], S:["Stand","data-s"], D:["Double","data-d"],
+  DH:["Double / Hit","data-dh"], DS:["Double / Stand","data-ds"], P:["Split","data-p"], RH:["Surrender / Hit","data-rh"]
+};
+
+function renderChart(kind){
+  const data = kind==="hard"?HARD:kind==="soft"?SOFT:PAIRS;
+  let html = "<table><tr><th class='player'>Your hand</th>" + DEALERS.map(d=>"<th>"+d+"</th>").join("") + "</tr>";
+  for(const [hand,row] of Object.entries(data)){
+    const cells = row.split(" ");
+    html += "<tr><th class='player'>"+hand+"</th>";
+    cells.forEach((c,i)=>{ html += "<td class='play' "+CODE[c][1]+" title='"+hand+" vs "+DEALERS[i]+"'>"+CODE[c][0]+"</td>"; });
+    html += "</tr>";
+  }
+  return html+"</table>";
+}
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  t.classList.add("active");
+  document.getElementById("chartCard").innerHTML = renderChart(t.dataset.tab);
+}));
+document.getElementById("chartCard").innerHTML = renderChart("hard");
+
+// ---- practice mode ----
+function pickSituation(){
+  const kinds = ["hard","hard","soft","pair"]; // hard hands come up most
+  const kind = kinds[Math.floor(Math.random()*kinds.length)];
+  let hand, handLabel;
+  if(kind==="pair"){
+    const p = Object.keys(PAIRS)[Math.floor(Math.random()*Object.keys(PAIRS).length)];
+    const v = p.split(",")[0];
+    handLabel = "pair of " + (v==="A"?"Aces":v+"s");
+    hand = {key:p, type:"pairs"};
+  } else if(kind==="soft"){
+    const s = Object.keys(SOFT)[Math.floor(Math.random()*Object.keys(SOFT).length)];
+    handLabel = s.replace(","," + ");
+    hand = {key:s, type:"soft"};
+  } else {
+    const hardRanges = {"5-8":[5,8],"9":[9,9],"10":[10,10],"11":[11,11],"12":[12,12],"13":[13,13],"14":[14,14],"15":[15,15],"16":[16,16],"17+":[17,20]};
+    const key = Object.keys(hardRanges)[Math.floor(Math.random()*Object.keys(hardRanges).length)];
+    const [lo,hi] = hardRanges[key];
+    const t = lo + Math.floor(Math.random()*(hi-lo+1));
+    handLabel = t + "";
+    hand = {key, type:"hard"};
+  }
+  const dealerIdx = Math.floor(Math.random()*10);
+  const data = hand.type==="hard"?HARD:hand.type==="soft"?SOFT:PAIRS;
+  const correct = data[hand.key].split(" ")[dealerIdx];
+  return {handLabel, dealer: DEALERS[dealerIdx], correct, key: hand.key, dealerKey: String(dealerIdx)};
+}
+let streak = 0, best = 0, current = null, dealt = false;
+function deal(){
+  current = pickSituation();
+  dealt = true;
+  document.getElementById("deal").innerHTML = "&#127137; <span style='color:var(--accent)'>"+current.handLabel+"</span> &nbsp;vs&nbsp; &#127199; <span style='color:var(--dim)'>"+current.dealer+"</span>";
+  document.getElementById("sit").textContent = "Dealer shows:";
+  document.getElementById("question").textContent = "Your play?";
+  document.getElementById("verdict").textContent = "";
+  document.getElementById("verdict").className = "verdict";
+  document.getElementById("dealBtn").textContent = "Deal";
+  document.getElementById("streak").textContent = streak>0 ? "Streak: "+streak+"  \u00b7  Best: "+best : "";
+}
+function answer(a){
+  if(!dealt) return;
+  dealt = false;
+  const v = document.getElementById("verdict");
+  const good = a===current.correct;
+  const name = current.handLabel + " vs. " + current.dealer;
+  if(good){
+    streak++; best = Math.max(best,streak);
+    v.className = "verdict good";
+    v.innerHTML = "\u2713 Correct — " + CODE[current.correct][0] + ". " + (WHY[name]||"");
+  } else {
+    streak = 0;
+    v.className = "verdict bad";
+    v.innerHTML = "\u2717 " + CODE[a][0] + " is wrong. Correct: <b>"+CODE[current.correct][0]+"</b>." +
+      "<span class='why'>"+(WHY[name]||"")+"</span>";
+  }
+  document.getElementById("streak").textContent = streak>0 ? "Streak: "+streak+"  \u00b7  Best: "+best : "Best: "+best;
+}
+document.getElementById("dealBtn").addEventListener("click", deal);
+document.querySelectorAll(".ans").forEach(b=>b.addEventListener("click",()=>answer(b.dataset.a)));
+</script>
+</body>
+</html>
